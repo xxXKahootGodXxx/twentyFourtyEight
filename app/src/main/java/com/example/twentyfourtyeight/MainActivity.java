@@ -12,15 +12,25 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private View mView;
+    private Grid grid = new Grid();
+    private TextView display;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+        //display = (TextView) findViewById(R.id.textview_testing);
+        display = (TextView) findViewById(R.id.please_work);
+        //display.setText(grid.toString());
+        //display.setText("this works");
+        grid.addRandom();
         setSupportActionBar(toolbar);
         //no
         //testing branch
@@ -39,16 +49,26 @@ public class MainActivity extends AppCompatActivity {
         mView = findViewById(R.id.swiping_test);
         mView.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
             public void onSwipeTop() {
-                Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
+                grid.moveUp(true);
+                grid.addRandom();
+                //display.setText(grid.toString());
+                Toast.makeText(MainActivity.this, "up", Toast.LENGTH_SHORT).show();
             }
             public void onSwipeRight() {
-                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                grid.moveRight(true);
+                grid.addRandom();
+                //display.setText(grid.toString());
             }
             public void onSwipeLeft() {
-                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                grid.moveLeft(true);
+                grid.addRandom();
+                //display.setText(grid.toString());
             }
             public void onSwipeBottom() {
-                Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+                grid.moveDown(true);
+                grid.addRandom();
+                //display.setText(grid.toString());
+
             }
 
         });
